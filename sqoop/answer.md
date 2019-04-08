@@ -1,15 +1,19 @@
 #1. From the accounts table, import only the primary key, along with the first name, last name to HDFS directory /loudacre/accounts/user_info. Please save the file in text format with tab delimiters
 
 * 처음 시도한 방법
+```
 [training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/loudacre --username training --password training --table accounts --target-dir /loudacre/acoounts/user_info --fields-terminated-by '\t'
-
+```
 *  acoouts.java에서 컬럼이름 확인
+```
 [training@localhost ~]$ ls
 accounts.java      codegen_basestations.java  Documents  eclipse  Pictures  Templates           Videos
 basestations.java  Desktop                    Downloads  Music    Public    training_materials  workspace
 [training@localhost ~]$ cat accounts.java
+````
 
 * 만들어진 폴더 확인 후 삭제
+```
 [training@localhost ~]$ hdfs dfs -ls /loudacre
 Found 5 items
 drwxrwxrwx   - training supergroup          0 2019-04-07 22:03 /loudacre/acoounts
@@ -19,6 +23,7 @@ drwxrwxrwx   - training supergroup          0 2019-04-07 21:48 /loudacre/basesta
 drwxrwxrwx   - training supergroup          0 2019-04-07 21:34 /loudacre/kb
 [training@localhost ~]$ hdfs dfs -rm -r /loudacre/acoounts
 Deleted /loudacre/acoounts
+```
 
 * tab으로 pk, first name, last name 포함하여 다시 생성
 ##[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/loudacre --username training --password training --table accounts --target-dir /loudacre/acoounts/user_info --columns "acct_num, first_name, last_name" --fields-terminated-by '\t'
