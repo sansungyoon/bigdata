@@ -22,7 +22,7 @@ Deleted /loudacre/acoounts
 
 * tab으로 pk, first name, last name 포함하여 다시 생성
 ##[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/loudacre --username training --password training --table accounts --target-dir /loudacre/acoounts/user_info --columns "acct_num, first_name, last_name" --fields-terminated-by '\t'
-<code>
+
 19/04/07 22:15:56 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.7.0
 19/04/07 22:15:56 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
 19/04/07 22:15:56 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
@@ -146,7 +146,7 @@ Janessa	Lewis
 129759	Deborah	Hutchings
 129760	Zola	Tedder
 129761	Ruth	Ebersole
-</code>
+
 
 #2. This time save the same in parquet format with snappy compression. Save it in /loudacre/accounts/user_compressed. Provide.a screenshot of HUE with the new directory created.
 
