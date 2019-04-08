@@ -26,8 +26,9 @@ Deleted /loudacre/acoounts
 ```
 
 * tab으로 pk, first name, last name 포함하여 다시 생성
-##[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/loudacre --username training --password training --table accounts --target-dir /loudacre/acoounts/user_info --columns "acct_num, first_name, last_name" --fields-terminated-by '\t'
 ```
+[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/loudacre --username training --password training --table accounts --target-dir /loudacre/acoounts/user_info --columns "acct_num, first_name, last_name" --fields-terminated-by '\t'
+
 19/04/07 22:15:56 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.7.0
 19/04/07 22:15:56 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
 19/04/07 22:15:56 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
@@ -155,8 +156,9 @@ Janessa	Lewis
 
 #2. This time save the same in parquet format with snappy compression. Save it in /loudacre/accounts/user_compressed. Provide.a screenshot of HUE with the new directory created.
 
-##[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/loudacre --username training --password training --table accounts --target-dir /loudacre/acoounts/user_compressed --as-parquetfile --compression-codec org.apache.hadoop.io.compress.SnappyCodec
 ```
+[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/loudacre --username training --password training --table accounts --target-dir /loudacre/acoounts/user_compressed --as-parquetfile --compression-codec org.apache.hadoop.io.compress.SnappyCodec
+
 19/04/07 22:25:53 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.7.0
 19/04/07 22:25:53 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
 19/04/07 22:25:53 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
@@ -235,8 +237,9 @@ Note: Recompile with -Xlint:deprecation for details.
 ```
 #3.Finally save in /loudacre/accounts/CA only clients whose state is from California. Save the filein avro format and compressed using snappy. From the terminal, display some of the records that you just imported. Take a screenshot and save it as CA_only.
 
-##[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/loudacre --username training --password training --table accounts --target-dir /loudacre/acoounts/CA --as-avrodatafile --where "state='CA'" --compression-codec org.apache.hadoop.io.compress.SnappyCodec
 ```
+[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/loudacre --username training --password training --table accounts --target-dir /loudacre/acoounts/CA --as-avrodatafile --where "state='CA'" --compression-codec org.apache.hadoop.io.compress.SnappyCodec
+
 19/04/07 22:44:23 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.7.0
 19/04/07 22:44:23 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
 19/04/07 22:44:23 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
