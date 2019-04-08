@@ -304,3 +304,40 @@ Note: Recompile with -Xlint:deprecation for details.
 		Bytes Written=5669076
 19/04/07 22:45:09 INFO mapreduce.ImportJobBase: Transferred 5.4065 MB in 41.6744 seconds (132.8444 KB/sec)
 19/04/07 22:45:09 INFO mapreduce.ImportJobBase: Retrieved 92416 records.
+[training@localhost ~]$ hdfs dfs -tail /loudacre/acoounts/CA/part-m-00000.avro
+N�����P
+esWardX 46 Essex �
+                        bank��5R
+                                 818554995>�_
+qpZ�82)�                                      ������C�WnLan�617 G
+ �������atHErin
+                  Little"2247 �	e1F,3295181364B�
+                                                             �!�
+                                                                ���=
+                                                                      !�@Graves&4447 Farl.<Berkele��47!!19��909210>b�!!�����QLeo�	Lamm 900 Cloverm	Jr
+                 ��ߥ!!
+                      JuanakHndel(2573 McDowellj$�Y�
+90a067>h�A���                                         8152>�`8����MDorothy*�($4717 Jerom5�Z�4
+(mble&2306 ��VN���326260Bd���
+
+
+Mar
+Pott!�(086 Concordd:�>
+                        5592a�6>���������M��ŧ�P
+                                                    JudithLindgren(1890 Ta��BU�=14135497>g��g@����M�����QDar�GonzalA� 2777 HighE�{
+ Mojav�
+       3566193884B
+                    �!�
+                       �Яg8MarjorieMorri�^($4417 CoffmdR01213280������a�Ű
+
+He�	P
+Perez$1093 Columbia))!�taB	�	
+                                         1213B!�
+
+                                                 ����a�tViolet
+                                                               Searcy(2601 Twin Oaks-'fF^0!. 415232719>2�!.,����N�����OD
+                  �
+My$z Reeve"
+J�723�
+        8246F��A�
+<                ������
