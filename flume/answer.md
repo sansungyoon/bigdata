@@ -1,4 +1,4 @@
-# conf 파일
+## conf 파일
 ```
 [training@localhost ~]$ cat $DEVSH/exercises/flume/new_spooldir.confpooldir.conf: A Spooling Directory Source
 
@@ -26,7 +26,7 @@ agent1.sources.webserver-log-source.channels = memory-channel
 ```
 
 
-# flume 실행
+## flume 실행
 ```
 [training@localhost ~]$ vi $DEVSH/exercises/flume/new_spooldir.conf[training@localhost ~]$ flume-ng agent --conf /etc/flume-ng/conf --conf-file $DEVSH/exercises/flume/new_spooldir.conf --name agent1 -Dflume.root.logger=INFO,console
 Info: Sourcing environment configuration script /etc/flume-ng/conf/flume-env.sh
@@ -71,7 +71,7 @@ Info: Including Hive libraries found via () for Hive access
 2019-04-08 19:10:44,908 (lifecycleSupervisor-1-3) [INFO - org.apache.flume.source.NetcatSource.start(NetcatSource.java:169)] Created serverSocket:sun.nio.ch.ServerSocketChannelImpl[/127.0.0.1:44444]
 2019-04-08 19:11:06,919 (SinkRunner-PollingRunner-DefaultSinkProcessor) [INFO - org.apache.flume.sink.LoggerSink.process(LoggerSink.java:94)]
 ```
-#telnet에 입력한 내용
+## telnet에 입력한 내용
 ```
 [training@localhost ~]$ telnet localhost 44444
 Trying 127.0.0.1...
@@ -81,7 +81,7 @@ Hello world!
 OK
 ```
 
-#flume agent에서 확인한 내용
+## flume agent에서 확인한 내용
 ```
 Event: { headers:{} body: 48 65 6C 6C 6F 20 77 6F 72 6C 64 21 0D          Hello world!. }
 ```
