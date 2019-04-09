@@ -40,7 +40,7 @@ test weblog entry 1
 test kafka
 ^CProcessed a total of 8 messages
 ```
-### --from-beginning 옵션을 제외하고 다시 실행
+* --from-beginning 옵션을 제외하고 다시 실행
 ```
 [training@localhost ~]$ kafka-console-consumer --zookeeper localhost:2181 --topic weblogs
 
