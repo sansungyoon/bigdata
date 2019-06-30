@@ -296,7 +296,7 @@ and check to make sure that only the key(s) you wanted were added.
 - 연결 됐음을 확인.
 ```
 
-###다른 노드에도 연결 된 것을 확인
+### 다른 노드에도 연결 된 것을 확인
 ```
 [root@nm ~]# ssh dn1
 The authenticity of host 'dn1 (192.168.157.130)' can't be established.
@@ -323,6 +323,7 @@ Last login: Sun Jun 30 00:37:29 2019
 
 ### config repositry CM
 ```
+- util 서버에 cm 설치
 - 참고 : https://www.cloudera.com/documentation/enterprise/5-15-x/topics/configure_cm_repo.html
 
 [centos@util ~]$ sudo wget https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo -P /etc/yum.repos.d/
@@ -695,6 +696,7 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/mariadb.service
 
 ### mariadb 권한 설정
 ```
+- 참고 url : https://www.cloudera.com/documentation/enterprise/5-15-x/topics/cm_ig_installing_configuring_dbs.html
 [centos@util ~]$ sudo /usr/bin/mysql_secure_installation
 
 NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
@@ -736,7 +738,7 @@ Normally, root should only be allowed to connect from 'localhost'.  This
 ensures that someone cannot guess at the root password from the network.
 
 * 원격접속여부
-Disallow root login remotely? [Y/n] Y
+Disallow root login remotely? [Y/n] Y  >> N 했어야하는거같음...
  ... Success!
 
 By default, MariaDB comes with a database named 'test' that anyone can
@@ -937,7 +939,7 @@ Failed to start mysqld.service: Unit not found.
 ```
 -- java.sql.SQLException: Access denied for user 'scm-user'@'localhost' (using password: YES) 에러를 해결하기 위해 다시 mysql접속 후 localhost 추가
 
-GRANT ALL ON scm.* TO 'scm-user'@'%' IDENTIFIED BY 'somepassword';
+GRANT ALL ON scm.* TO 'scm-user'@'localhost' IDENTIFIED BY 'somepassword';
 FLUSH PRIVILEGES;
 ```
 
