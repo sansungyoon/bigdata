@@ -12,7 +12,7 @@ https://lsjsj92.tistory.com/432
 https://blog.naver.com/qkfl4/221435863884
 ```
 
-###실습 시작
+### 실습 시작
 ```
 - VMware workstation Download
 - centOS Download
@@ -154,7 +154,7 @@ passwd: 모든 인증 토큰이 성공적으로 업데이트 되었습니다.
 [root@localhost /]#
 ```
 
-###SSH를 사용하여 EC2 인스턴스에 로그인할 때 키 페어 대신에 암호 로그인을 활성화
+### SSH를 사용하여 EC2 인스턴스에 로그인할 때 키 페어 대신에 암호 로그인을 활성화
 ```
 [root@localhost /]# sudo vi /etc/ssh/sshd_config
 PasswordAuthentication yes 로 수정 : 패스워드 인증 허용
@@ -187,15 +187,15 @@ PasswordAuthentication yes 로 수정 : 패스워드 인증 허용
 192.168.157.131 dn2
 ```
 
-###SSH KEY ? 서버 접속 시 비밀번호 대신 KEY를 제출 하는 방식
-
+### SSH KEY ? 서버 접속 시 비밀번호 대신 KEY를 제출 하는 방식
+```
 [root@localhost /]# cd ~/.ssh
 [root@localhost .ssh]# ll
 합계 4
 -rw-r--r--. 1 root root 180  6월 29 22:28 known_hosts
 [root@localhost .ssh]# cat known_hosts
 nm,192.168.157.128 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJq8udbtNUWlGLmZhz0MjTF5ilj3V4ik14U2ZdfIJjYDyT1DhYujGNIzvRsiOyFEeb7NqAWw8el+4sKGLxGPfgg=
-
+```
 ### rsa 방식으로 키 생성
 ```
 - 참고 : https://opentutorials.org/module/432/3742
@@ -313,11 +313,12 @@ Last login: Sun Jun 30 00:37:29 2019
 ```
 
 ### 각 서버 hostname 변경
+```
 192.168.157.128 master.cdhcluster.com nm
 192.168.157.129 util.cdhcluster.com util
 192.168.157.130 data1.cdhcluster.com dn1
 192.168.157.131 data2.cdhcluster.com dn2
-
+```
 ## install CM
 
 ### config repositry CM
@@ -692,7 +693,7 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/mariadb.service
 [centos@util ~]$ sudo systemctl start mariadb
 ```
 
-###mariadb 권한 설정
+### mariadb 권한 설정
 ```
 [centos@util ~]$ sudo /usr/bin/mysql_secure_installation
 
