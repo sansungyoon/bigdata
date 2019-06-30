@@ -983,3 +983,8 @@ install은 id/pw로 할수도있고 key로 할수도 있음
 ```
 
 * NAS 장치에 DataNode 데이터 디렉토리를 두지 마십시오. NAS의 크기를 재조정하면 복제본을 삭제할 수 있으므로 블록이 누락됩니다.
+
+* DB 연결시, 연결이 안될경우 hostname을 추가해야함
+```
+ MariaDB [(none)]> select user, password, host from mysql.user;
+```
