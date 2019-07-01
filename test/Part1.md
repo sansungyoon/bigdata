@@ -1007,8 +1007,27 @@ install은 id/pw로 할수도있고 key로 할수도 있음
 
 * NAS 장치에 DataNode 데이터 디렉토리를 두지 마십시오. NAS의 크기를 재조정하면 복제본을 삭제할 수 있으므로 블록이 누락됨
 * DB 연결시, 연결이 안될경우 mysql에서 hostname을 추가해야함
-* 호스트가 꼬일 경우, 노드 connection 시도 시 heartbeat error가 날 수 있음
+* 호스트가 꼬일 경우, install 시도 시 heartbeat error가 날 수 있음 (4번 그림)
 ```
  MariaDB [(none)]> select user, password, host from mysql.user;
 ```
+* 1. 호스트 지정
 ![](호스트지정.PNG)
+* 2. 호스트 연결 확인
+![](호스트연결확인.PNG)
+* 3. 로그인 인증
+- centos로 접속하니 install 이 안되서 root로 접속함
+![](로그인 인증.PNG)
+* 4. install 확인
+![](install 확인.PNG)
+* 4. install 완료
+![](install 확인.PNG)
+* 5. 사용자 지정 서비스 선택
+![](사용자지정서비스선택.PNG)
+* 6. cluster setup
+![](클러스터셋업.PNG)
+* 7. 서비스 구성
+![](기본서비스구성.PNG)
+* 8. db연결 완료
+![](db연결완료.PNG)
+* 뒷부분은 캡처 못함
