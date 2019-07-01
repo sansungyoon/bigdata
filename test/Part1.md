@@ -25,19 +25,19 @@ https://www.cloudera.com/documentation/enterprise/5-15-x/topics/cm_ig_host_alloc
 
 
 ### 실습 시작
-```
-- VMware workstation Download
-- centOS Download
+
+* VMware workstation Download
+* centOS Download
 http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso
-- centOS 설치
+* centOS 설치
 https://corock.tistory.com/315
-- 참고 url
+* 참고 url
 http://blog.naver.com/PostView.nhn?blogId=qmfoemty&logNo=221439879510&from=search&redirect=Log&widgetTypeCall=true&directAccess=false
 https://youl.me/7
 https://quio314.tistory.com/5
-- Cloudera 설치 / 주의사항 나와있음
+* Cloudera 설치 / 주의사항 나와있음
 https://wooyoung85.tistory.com/47
-```
+
 
 ### 시작 전 확인 사항
 ```
@@ -62,6 +62,7 @@ VMware workstation Player 14 버전에 CentOS 7 4대를 각각 설치
 ```
 
 ### centos version 확인
+
 ```
 [centos@localhost ~]$ grep . /etc/*release
 /etc/centos-release:CentOS Linux release 7.6.1810 (Core)
@@ -209,9 +210,9 @@ PasswordAuthentication yes 로 수정 : 패스워드 인증 허용
 nm,192.168.157.128 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJq8udbtNUWlGLmZhz0MjTF5ilj3V4ik14U2ZdfIJjYDyT1DhYujGNIzvRsiOyFEeb7NqAWw8el+4sKGLxGPfgg=
 ```
 ### rsa 방식으로 키 생성
-```
-- 참고 : https://opentutorials.org/module/432/3742
 
+- 참고 : https://opentutorials.org/module/432/3742
+```
 [root@localhost .ssh]# ssh-keygen -t rsa
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa):   
@@ -237,7 +238,7 @@ The key's randomart image is:
 
 중간에 root로 들어갔었는데, root에서 굳이 작업할 필요가 없는건가??!
 비밀번호 없이 로그인할 수 있도록 key 세팅
-root 비번이 왜 root로 걸려있는지..?
+root 비번이 왜 root로 걸려있었음
 
 ### KEY gen
 ```
@@ -325,6 +326,7 @@ Last login: Sun Jun 30 00:37:29 2019
 ```
 
 ### 각 서버 hostname 변경
+* 이 작업부터 해줘야함
 ```
 192.168.157.128 master.cdhcluster.com nm
 192.168.157.129 util.cdhcluster.com util
@@ -334,10 +336,11 @@ Last login: Sun Jun 30 00:37:29 2019
 ## install CM
 
 ### config repositry CM
-```
-- util 서버에 cm 설치
-- 참고 : https://www.cloudera.com/documentation/enterprise/5-15-x/topics/configure_cm_repo.html
 
+* util 서버에 cm 설치
+* 참고 : https://www.cloudera.com/documentation/enterprise/5-15-x/topics/configure_cm_repo.html
+
+```
 [centos@util ~]$ sudo wget https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo -P /etc/yum.repos.d/
 --2019-06-30 12:45:17--  https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo
 Resolving archive.cloudera.com (archive.cloudera.com)... 151.101.72.167
@@ -364,10 +367,10 @@ baseurl=https://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.15.2/
 ```
 
 ### util 에 jdk, maria db 등을 설치
-```
-- repository 먼저 확인
-- yum 설정은 yum.conf 에서 하고있으며, yum.repos.d 에 있는 파일에 지정된 서버주소로부터 패키지들을 설치하고 관리할 수 있음
 
+* repository 먼저 확인
+* yum 설정은 yum.conf 에서 하고있으며, yum.repos.d 에 있는 파일에 지정된 서버주소로부터 패키지들을 설치하고 관리할 수 있음
+```
 [centos@util ~]$ grep -i exclude /etc/yum.conf /etc/yum.repos.d/*
 [centos@util ~]$ yum repolist all
 Loaded plugins: fastestmirror, langpacks
@@ -707,6 +710,7 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/mariadb.service
 ```
 
 ### mariadb 권한 설정
+* 설정사항은 재확인 필요
 ```
 - 참고 url : https://www.cloudera.com/documentation/enterprise/5-15-x/topics/cm_ig_installing_configuring_dbs.html
 [centos@util ~]$ sudo /usr/bin/mysql_secure_installation
@@ -950,7 +954,6 @@ Failed to start mysqld.service: Unit not found.
 ### 문제 해결
 ```
 -- java.sql.SQLException: Access denied for user 'scm-user'@'localhost' (using password: YES) 에러를 해결하기 위해 다시 mysql접속 후 localhost 추가
-
 GRANT ALL ON scm.* TO 'scm-user'@'localhost' IDENTIFIED BY 'somepassword';
 FLUSH PRIVILEGES;
 ```
@@ -1002,9 +1005,10 @@ install은 id/pw로 할수도있고 key로 할수도 있음
 * key user pw로 접속하는게 더 쉬울 것
 ```
 
-* NAS 장치에 DataNode 데이터 디렉토리를 두지 마십시오. NAS의 크기를 재조정하면 복제본을 삭제할 수 있으므로 블록이 누락됩니다.
-
-* DB 연결시, 연결이 안될경우 hostname을 추가해야함
+* NAS 장치에 DataNode 데이터 디렉토리를 두지 마십시오. NAS의 크기를 재조정하면 복제본을 삭제할 수 있으므로 블록이 누락됨
+* DB 연결시, 연결이 안될경우 mysql에서 hostname을 추가해야함
+* 호스트가 꼬일 경우, 노드 connection 시도 시 heartbeat error가 날 수 있음
 ```
  MariaDB [(none)]> select user, password, host from mysql.user;
 ```
+![](호스트지정.PNG)
