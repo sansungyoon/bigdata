@@ -1,16 +1,28 @@
 ## PART 1 : 클러스터 구축 실습
-```
-- SSH KEY 생성 및 패스워드 없이 로그인
+
+* SSH KEY 생성 및 패스워드 없이 로그인
 https://ourcstory.tistory.com/168
-- cloudera 설치 방법 ( Linux, Cloudera Manager )
+* cloudera 설치 방법 ( Linux, Cloudera Manager )
 https://ourcstory.tistory.com/171
-- AWS 환경에서 CLoudera Manager 설치하기
+* AWS 환경에서 CLoudera Manager 설치하기
 https://swalloow.github.io/cloudera-install
-- Virtualbox CentOS 6.7 환경에서 CM 으로 Hadoop 설치
+* Virtualbox CentOS 6.7 환경에서 CM 으로 Hadoop 설치
 https://lsjsj92.tistory.com/432
-- Cloudera 설치 - CM 설치 준비/환경설정
+* Cloudera 설치 - CM 설치 준비/환경설정
 https://blog.naver.com/qkfl4/221435863884
-```
+* 참고 url 등
+https://lsjsj92.tistory.com/432
+https://github.com/insun13/bigdata/blob/master/test/Part1.md
+http://blog.naver.com/PostView.nhn?blogId=qkfl4&logNo=221435864078
+http://hwengineer.blogspot.com/2018/11/x86-hadoop-cluster-hdfs-ibm-power-linux.html
+https://www.cloudera.com/documentation/enterprise/5-15-x/topics/install_software_cm_wizard.html
+https://wooyoung85.tistory.com/47
+https://semode.tistory.com/73
+https://abc2080.tistory.com/entry/CentOS-Cloudera-Manager-%EC%84%A4%EC%B9%98
+https://www.cloudera.com/documentation/enterprise/latest/topics/cluster_setup_wizard.html#setup_wizard_review_changes
+https://github.com/biospin/BigBio/blob/master/part03/week01_160503/hadoop/cloudera_install.md
+https://www.cloudera.com/documentation/enterprise/5-15-x/topics/cm_ig_host_allocations.html#host_role_assignments
+
 
 ### 실습 시작
 ```
@@ -970,6 +982,14 @@ admin / admin
 # /sbin/service sshd start
 # ssh localhost
 ```
+* 서버 재시작 시
+```
+# service cloudera-scm-server restart
+# service cloudera-scm-agent restart
+# sudo systemctl start cloudera-scm-server
+```
+* node heartbeat 오류 시 참고
+https://community.cloudera.com/t5/Cloudera-Manager-Installation/Getting-quot-heartbeat-quot-errors-when-trying-to-install/ta-p/36843
 
 ### 참고
 ```
