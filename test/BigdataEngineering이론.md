@@ -120,6 +120,49 @@ Namenode, Secondary Namenode, DataNode
 ```
 ## NoSQL 이해와 활용
 
+* NoSQL
+```
+   - Transaction 에서 자유로움
+   - 고정되지 않는 스키마. Join 이 없음. 인덱싱 없음
+```
+```
+   - Key-Value 방식으로 저장
+   - ColumeStore : Storage Inefficient . 데이터 압축 가능성 높으며 다 저장할 필요 없음(같은관계 데이터끼리 들어가기 때문)
+     * 기존 RDBMS는 Raw 단위
+```
+
+* RDBMS
+```
+   - ACID (A : Atomicity  C : COnsistnecy  I : Isalation  D : Durability)
+```
+
+* CAP Theorem
+```
+   - DB의 특징 중 2가지를 가지는 것
+   - NoSQL은 Partition Tolerance 는 포기할 수 없음. 필수항목
+   - A / P or C / P
+```
+```
+   - Consistency : 병렬이라는 가정
+   - Availability : 동시작동으로 항상 그 값을 줄 수 있어야 함
+   - Partition Tolerance   
+```
+
+* HBase
+```
+   - Single transaction 가능. row Colume. 스키파 Flexible
+   - 인덱싱 가능. Delete 시 물리적 삭제 X. 메타데이터 Mark. OLTP 대행 안됨
+   - 데이터 돌 때 하나의 Region Server 필요. 다수의 데이터 관리 가능
+      * Region : Block 개념
+```
+
+* Cassandra
+```
+   - Elastic Scalability 가능.
+   - High Availability and Fault Tolerance
+   - Tunable COnsistency : High Available, Strong Consistency 를 Tuanble 가능
+```
+
 ## Flume/Kafka
 
 ## Hive/oozie
