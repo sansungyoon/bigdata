@@ -77,7 +77,7 @@ Namenode, Secondary Namenode, DataNode
    - HA 상태정보를 저장하는 장소. 어떤 서버가 Active인지 Stand-by인지 저장
 ```
 
-* Foume(Source, Channel, Sink), Kafka
+* Flume(Source, Channel, Sink), Kafka
 ```
    - 외부 데이터 소스들로부터 데이터 통합. 여러 시스템 로그 수집에 적합.
 ```
