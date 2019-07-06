@@ -7,7 +7,7 @@
 * HDFS 3종 SET
 Namenode, Secondary Namenode, DataNode
 
-- MasterNode : Supervised and manage the work. 관리자역할. 한 클러스터에 두개이상. 자원관리. SinglePoint of Failure 대비
+>- MasterNode : Supervised and manage the work. 관리자역할. 한 클러스터에 두개이상. 자원관리. SinglePoint of Failure 대비
    - Namenode, JobTracker 로 구성되어있음.
    - Namenode : SlaveNode에 일을 시킴. 메타데이터 관리
    - JobTracker : 사용자 Application 관리. 하둡클러스터에 하나만 존재
