@@ -179,7 +179,8 @@ Namenode, Secondary Namenode, DataNode
    - 소스에서 데이터 받아 채널에 던져주기 전에, 인터셉터(처리, 메타정보 끼워넣기)에서 연산가능
    - Flume Arch. 3가지 요소 : Source, Sink, Channel  > 이것들을 작동시키는건 Agent.
    - Source나 Channel 이 여러개 있을 수 있기 때문에 연결을 bind에서 넣어줘야 함
-
+```
+```
    - Channel
       . Memory Channel : 속도가 중요할 때 사용. RAM에 저장
       . JDBC Channel : Debug 가 까다로움
@@ -205,10 +206,22 @@ Namenode, Secondary Namenode, DataNode
       . Fault Tolerant : 복사를 해놓기 떄문에 high Availability
       . Fast
       . Flexible : 데이터 만드는 producer들과 받는 consumer들을 분리 시킴. 완전 분리되어있기때문에 누가 메세지를 가져가는지도 알 수 없음
-
+   - 단점
+      . 코딩이 힘들고 모니터링이 어려움
+```
+```
    - topic생성 > producer에 메세지 전달 > consumer가 메세지 수신 > 클러스터에서 kafka 실행  
-  * broker : 클러스터 뒤에서 일하는 노드
-  * Topiec은 메세지이며 파티션이 가능하기 때문에 순서가 있음. Key-value 형식
-  * 메세지 : 읽었든, 읽지 않았든 메세지를 유지함 
+
+   - broker : 클러스터 뒤에서 일하는 노드
+   - Topic : 메세지이며 파티션이 가능하기 때문에 순서가 있음. Key-value 형식. Leader - Follower 방식. 누구나 L/F가 될 수 있음
+      * immutable : 분산 병렬 처리에서는 값이 변하면 안되기 때문에 불변
+      * Lambda Arch. : 스트리밍/ 배치 조인하는 Arch.
+   - Message : 읽었든, 읽지 않았든 메세지를 유지. stream 처럼 처리
+
+   - Consumer
+      . Consumer는 늘려서 받을 수도 있고, 줄여서 받을 수도 있음
+      . 한 파티션 안에서는 순서 보존을 함
+      . 한 파티션 안에 한 consumer가 존재. max는 파티션 개수
+      . 파티션안에서는 순서가 유지되기때문에 N개 날라가도 N-1가 복구 가능함
 ```
 ## Hive/oozie
