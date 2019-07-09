@@ -165,4 +165,50 @@ Namenode, Secondary Namenode, DataNode
 
 ## Flume/Kafka
 
+* Sqoop
+```
+   - Sqoop : Client-side application using MapReduce.
+   - 하둡 API를 사용하며 JDBC Connector를 씀
+   - RDB > HDFS, HDFS > RDB
+```  
+
+* Flume
+```
+   - 패킷같은 개념으로 스트리밍데이터를 처리함
+   - Key-Value 형식
+   - 소스에서 데이터 받아 채널에 던져주기 전에, 인터셉터(처리, 메타정보 끼워넣기)에서 연산가능
+   - Flume Arch. 3가지 요소 : Source, Sink, Channel  > 이것들을 작동시키는건 Agent.
+   - Source나 Channel 이 여러개 있을 수 있기 때문에 연결을 bind에서 넣어줘야 함
+
+   - Channel
+      . Memory Channel : 속도가 중요할 때 사용. RAM에 저장
+      . JDBC Channel : Debug 가 까다로움
+      . File, Kafka..
+   - Source : command 의 결과치를 소스로 쓰는 것. 데이터를 잃어버릴 수도 있음.
+   - Sink
+      . sink processor 가 sink group 안에 logic을 짤 수 있음.
+      . backoff : sink한테 보냈는데 ack가 없을때 다시 rollback해서 보내는 옵션
+      . 로드밸런싱을 위해서 / fault tolerance를 위해서 다음 prilrty로 넘어갈 수 있도록 함
+
+   - Contextual Routing
+      . interceptor : 인터셉터에서 식별 프로세스를 거침
+      . Channel Selector : 어느 채널로 갈지 결정
+    * 에러 발생한 경우 번호를 알아내서 다른 채널로 가게 하고, 정상적인 경우 또 다른 채널로 가게 함
+```
+
+* Kafka
+```
+   - distributed commit log > Transaction system
+   - 클러스터 시스템 따로 생성 가능
+   - 장점
+      . Scalable : 클러스터기 때문에 노드 추가 하면 scale out 가능
+      . Fault Tolerant : 복사를 해놓기 떄문에 high Availability
+      . Fast
+      . Flexible : 데이터 만드는 producer들과 받는 consumer들을 분리 시킴. 완전 분리되어있기때문에 누가 메세지를 가져가는지도 알 수 없음
+
+   - topic생성 > producer에 메세지 전달 > consumer가 메세지 수신 > 클러스터에서 kafka 실행  
+  * broker : 클러스터 뒤에서 일하는 노드
+  * Topiec은 메세지이며 파티션이 가능하기 때문에 순서가 있음. Key-value 형식
+  * 메세지 : 읽었든, 읽지 않았든 메세지를 유지함 
+```
 ## Hive/oozie
