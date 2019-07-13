@@ -33,7 +33,7 @@ Namenode, Secondary Namenode, DataNode
    2) Secondary Namenode운영. 주 Namenode 실패 시 사용될 네임스페이스 이미지복제본 유지
 ```
 ```
-   - 메타데이터 이미지 : fs image(전체 Block 스냅샨 가지고있음. Namenode가 서비스), edits
+   - 메타데이터 이미지 : fs image(전체 Block 스냅샷 가지고있음. Namenode가 서비스), edits (변경 분 Transaction)
 ```
 
 * Resource Management
@@ -45,6 +45,11 @@ Namenode, Secondary Namenode, DataNode
 ```
   - HDFS 상단에서 빅데이터용 어플리케이션을 실행하는 대용량 분산 운영체제 역할
   - Resource Manager, JOb Histroy Server, NodeManagers
+```
+```
+  - Yarn-MapReduce 차이점
+     . 여러개를 동시에 돌릴 수 있음.
+     . JobTracker 외에 AM이 Job을 관리하게 함
 ```
 - Resource Manager
 ```
@@ -225,3 +230,48 @@ Namenode, Secondary Namenode, DataNode
       . 파티션안에서는 순서가 유지되기때문에 N개 날라가도 N-1가 복구 가능함
 ```
 ## Hive/oozie
+
+* Hive / Impala
+```
+   - Impala Deamon
+      . 각 워커노드에서 수행
+      . master node -> State Store (캐시 Update) / Catalog Server ( one per cluster)
+      . Satestore가 캐시를 Update하여 Impala Daemon으로 보내줌. daemon은 coordi역할을 함
+   - Impala 의 메타스토어는 기본 SQL DB가 필요함.
+   - Hive와 Impala는 메타데이터를 공유함
+   - Hive Service
+      . 하둡 에코시스템 중에서 데이터를 모델링하고 프로세싱하는 데이터 웨어하우징용 솔루션
+      . RDB의 데이터베이스, 테이블과 같은 형태로 HDFS에 저장된 데이터의 구조를 정의하는 방법을 제공
+      . HiveQL 쿼리를 이용하여 데이터 처리
+   - Hive Table : Hive 메타스토어에 저장된 스키마 / hdfs에 저장된 데이터
+```
+```
+   - dfs.block.size : HDFS에 저장된 파일의 블록크기를 지정하는데 사용되는 속성
+```
+* oozie
+```
+   - Hadoop 내 job에 대해 workflow작성 및 scheduling을 위해 사용되는 서비스
+```
+* Sqoop
+```
+   - HDFS에서 관리되는 DB를 import 혹은 export하는 Java Class를 생성하는 tool
+```
+
+* 참고
+```
+   - Yarn의 MapReduce가 수행되는 Hadoop cluster의 각 마스터노드에서 실행되는 2가지 daemon
+      . RM, Node Manager
+
+   - replica에 대한 block 배치
+      1) replica 1
+         클라이언트가 클러스터 밖에 있는 경우 블록의 첫 복제는 임의 랙 과 노드를 선택하여 수행
+         하지만 클라이언트가 클러스터내의 데이터 노드가 수행되는 노드에서 실행 된다면 로컬 노드에 저장
+      2) replica 2
+         replica1과 다른 rack에 쓰여짐
+      3) replica 3
+         replica 2와 같은 rack의 다른 노드에 쓰여짐
+      4) replica 4
+         추가적인 replica가 있을 경우 다른 rack에 replica 수행
+         
+   - Mapreduce가 작업을 수행하는 동안 노드의 Mapper가 멈추면, AM이 알아차리고 전송함
+```
