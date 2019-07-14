@@ -311,7 +311,7 @@ do the actual work. 필요 시 다수의 Worker 확장 가능.
    - create RDD
      . 데이터 소스에서 read
      . 메모리 안에서 만들 때
-     . RDD A -> RDD B 변형
+     . RDD A -> RDD B 변형 (DataFrame을 transformation)
 
     * RDD는 Immutable한 특성을 가짐. 원본의 RDD는 그대로 있고 아예 새로운 RDD가 나오는 것
 ```
@@ -329,6 +329,9 @@ do the actual work. 필요 시 다수의 Worker 확장 가능.
    - When and Where to Persist
       . Memory only / disk : disk traffic 이 발생하는 시간에 따라 memory or disk로 결정 (연산 시간때문)              
       . disk / Replication : Disk rdplication 은 다른 노드에서 읽어오기 때문에 network traffic이 발생하기 떄문에 고민
+```
+```
+   - Checkpoint 하면 persist할 때 linegae를 없앰 (infinte linegae를 없앰)
 ```
 * Pair RDD
 ```
@@ -359,7 +362,18 @@ do the actual work. 필요 시 다수의 Worker 확장 가능.
 * Spark Streaming
 ```
    - Scalability and efficient falut tolerance
+      . Thread 2개 중 하나는 receiver 역할을 해야함. 여러개 복사해서 fault tlerance 함
    - Once and only once Processing
    - Integrate batch and real-time processing
 
 ```
+```
+   - on Kafka  
+      . Direct 면 병렬 / 이미 union 되어 있음
+```
+* DStream
+```
+   - 일정하게 자름. 단위 하나하나가 RDD.
+```
+
+## Big data 아키텍처
