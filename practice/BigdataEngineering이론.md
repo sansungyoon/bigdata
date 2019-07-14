@@ -1,13 +1,22 @@
 ## Hadoop 이해와 활용
 
-* BigData ?
+* BigData
+```
 하둡으로 처리할 데이터. Velocity, Variety, Volume
-* Hadoop ?
+```
+* Hadoop
+```
 데이터를 분산해서 저장하고, 분산된 데이터를 병렬처리 하는 것(플랫폼)
+```
 * HDFS 3종 SET
+```
 Namenode, Secondary Namenode, DataNode
+```
 
-- MasterNode : Supervised and manage the work. 관리자역할. 한 클러스터에 두개이상. 자원관리. SinglePoint of Failure 대비
+- MasterNode
+```
+ Supervised and manage the work. 관리자역할. 한 클러스터에 두개이상. 자원관리. SinglePoint of Failure 대비
+```
 ```
    - Namenode, Secondary Namenode, JobTracker 로 구성되어있음.
    - Namenode : SlaveNode에 일을 시킴. 파일 시스템, 메타데이터 관리.
@@ -19,14 +28,20 @@ Namenode, Secondary Namenode, DataNode
    - Stand-by Namenode가 죽으면 fs image 업데이트 X.
    - 저널노드 : 에딧로그를 자신이 실행되는 서버의 로컬디스크에 저장
 ```
-- Slave/Worker Node : do the actual work. 필요 시 다수의 Worker 확장 가능.
+- Slave/Worker Node
+```
+do the actual work. 필요 시 다수의 Worker 확장 가능.
+```
 ```
    - DataNode, TaskTracker 로 구성되어있음
    - DataNode : 블록의 백업 저장소. 실제 데이터를 가지고있으며 Namenode에 지속적 보고.
                 하나가 깨져도 사용자는 계속 데이터 읽을 수 있음. 하나의 파일은 여러 노드에 블록으로 분리되어 보관 (3copy)
 ```
 
-- TaskTracker : 각 Slavenode에 할당된 작업 실행담당
+- TaskTracker
+```
+각 Slavenode에 할당된 작업 실행담당
+```
 - Namenode는 장애복구를 위해
 ```
    1) 메타데이터의 지속상태를 보완해주는 파일 백업
@@ -37,8 +52,9 @@ Namenode, Secondary Namenode, DataNode
 ```
 
 * Resource Management
+```
  [cpu, 메모리] -> Container 지원
-
+```
 * Hadoop 1.0 <-> 2.0 차이 : Yarn 유무
 
 * Yarn
@@ -70,9 +86,10 @@ Namenode, Secondary Namenode, DataNode
    - 작업당 하나씩 생성. Container를 사용해 모니터링과 실행 관리.
      RM과 작업에 대한 자원 요구사항 협상
 ```
+```
 참고 ) Container : CPU, Memory. 필요한 자원의 요청은 AM이 담당. 승인은 RM이 담당.
-- Fault Tolerant : 리소스가 죽어도 다른 노드에서 작업 계속할 수 있도록 함
-
+    - Fault Tolerant : 리소스가 죽어도 다른 노드에서 작업 계속할 수 있도록 함
+```
 * Zookeeper
 ```
    - 분산 병렬 서비스 조정자/ 분산시스템 구성 서비스/ 동기화 서비스 / 분산 시스템을 위한 Naming 등록
@@ -344,5 +361,5 @@ Namenode, Secondary Namenode, DataNode
    - Scalability and efficient falut tolerance
    - Once and only once Processing
    - Integrate batch and real-time processing
-   
+
 ```
