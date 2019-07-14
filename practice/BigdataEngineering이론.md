@@ -272,6 +272,77 @@ Namenode, Secondary Namenode, DataNode
          replica 2와 같은 rack의 다른 노드에 쓰여짐
       4) replica 4
          추가적인 replica가 있을 경우 다른 rack에 replica 수행
-         
+
    - Mapreduce가 작업을 수행하는 동안 노드의 Mapper가 멈추면, AM이 알아차리고 전송함
+```
+
+## Spark
+
+* Spark Context
+```
+   - 모든 spark 프로그램은 spark context object가 필요
+```
+* RDD
+```
+   - 언제든지 복구 가능함
+   - 분산된 데이터 셋
+   - Spark의 가장 기초적인 Unit
+   - serialization한 특성을 가지며, type이 섞여서 들어갈 수 있음
+   - Pair RDD (key-value)/ Double RDD
+```
+```
+   - create RDD
+     . 데이터 소스에서 read
+     . 메모리 안에서 만들 때
+     . RDD A -> RDD B 변형
+
+    * RDD는 Immutable한 특성을 가짐. 원본의 RDD는 그대로 있고 아예 새로운 RDD가 나오는 것
+```
+```
+   - RDD Opreation
+      . Action : 즉시 수행. 모든 계산된 결과를 제공/저장
+      . Transformations : Immutable. linegae에 기록. lazy operation. 변환을 통해 새로운 RDD생성
+```
+```
+   -  Memory Persistence
+     . in-memory 에 있는건 보장은 아님. 보장되려면 disk에 저장이 필요함
+       메모리에 꽉찼거나 최근에 사용하지 않은걸 지우면 저장이 될수도, 안될수도 있기 때문
+```
+```
+   - When and Where to Persist
+      . Memory only / disk : disk traffic 이 발생하는 시간에 따라 memory or disk로 결정 (연산 시간때문)              
+      . disk / Replication : Disk rdplication 은 다른 노드에서 읽어오기 때문에 network traffic이 발생하기 떄문에 고민
+```
+* Pair RDD
+```
+   - key-value Pair
+   - Key, Value는 어떤 type도 가능
+   - pair rdd생성 시, Key를 뭘로 할건지 먼저 설정
+   - 각 key 에 대해 병렬처리 하거나 re grouping 할 때 유용함
+   - key를 가지는 데이터로 동작하는 함수를 고려해 tuple로 구성한 return
+```
+```
+   - Pair RDD operation
+      . countByKey > action
+      . groupByKey > transformation
+      . sortByKey > transformation
+      . join
+```
+
+* Stage
+```
+   - 한 stage안에 repartitioning이 있었다가 shuffle전에 끝
+
+   - How Spark Calculates Stage
+      . Narrow dependencies : linear기 때문에 이전 것만 Dependency
+         ex ) map, filter, union
+      . Wide(or shuffle) Dependency : Dependency가 여러개. wide Dependency 기점으로 stage가 구분됨
+         ex ) reduceByKey, join, groupByKey
+```
+* Spark Streaming
+```
+   - Scalability and efficient falut tolerance
+   - Once and only once Processing
+   - Integrate batch and real-time processing
+   
 ```
