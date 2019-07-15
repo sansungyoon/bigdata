@@ -382,5 +382,12 @@ do the actual work. 필요 시 다수의 Worker 확장 가능.
    - 데이터를 끊어서 연속된 RDD로 만들어 처리
    - 데이터를 아주 짧은 주기로 처리 (ex: 1초마다 처리)
 ```
+* Spark Application 
+```
+   - create Spark Application
+      .
+   
+   - set configuration
+```
 
 ## Big data 아키텍처
