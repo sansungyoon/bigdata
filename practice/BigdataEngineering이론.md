@@ -391,3 +391,15 @@ do the actual work. 필요 시 다수의 Worker 확장 가능.
 ```
 
 ## Big data 아키텍처
+
+* HDFS HA Mode
+```
+```
+
+* Kudu
+```
+```
+* SRF / DRF diff
+```
+```
+
