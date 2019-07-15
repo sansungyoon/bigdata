@@ -36,12 +36,9 @@ do the actual work. 필요 시 다수의 Worker 확장 가능.
    - DataNode, TaskTracker 로 구성되어있음
    - DataNode : 블록의 백업 저장소. 실제 데이터를 가지고있으며 Namenode에 지속적 보고.
                 하나가 깨져도 사용자는 계속 데이터 읽을 수 있음. 하나의 파일은 여러 노드에 블록으로 분리되어 보관 (3copy)
+    - TaskTracker : 각 Slavenode에 할당된 작업 실행담당
 ```
 
-- TaskTracker
-```
-각 Slavenode에 할당된 작업 실행담당
-```
 - Namenode는 장애복구를 위해
 ```
    1) 메타데이터의 지속상태를 보완해주는 파일 백업
