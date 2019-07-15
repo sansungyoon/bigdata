@@ -295,7 +295,7 @@ do the actual work. 필요 시 다수의 Worker 확장 가능.
 * Spark Context
 ```
    - 모든 spark 프로그램은 spark context object가 필요
-   
+
 ```
 * RDD
 ```
@@ -379,24 +379,64 @@ do the actual work. 필요 시 다수의 Worker 확장 가능.
    - 데이터를 끊어서 연속된 RDD로 만들어 처리
    - 데이터를 아주 짧은 주기로 처리 (ex: 1초마다 처리)
 ```
-* Spark Application 
+* Spark Application
 ```
    - create Spark Application
-      .
-   
+      . spark context 가 필요함. 먼저 정의 필요
+      . 대용량 데이터 처리. python, scala, java등으로 작성
+```
+```
    - set configuration
+      . spark.master
+      . spark.app.name
+      . spark.local.dir
+      . spark.ui.port  : spark application UI가 수행되는 port
+      . spark.executor.memory : executor 당 메모리 할당
+      . spark.driver.memory : dirver 안에 spark context가 돌게 됨. 각 executor들의 memory size
 ```
 
 ## Big data 아키텍처
 
+* Data format
+```
+   - Avro : 효율적인 데이터 serialization 프레임워크로 광범위한 hadoop ecoystem에서 지원하는 파일 유형. Flexible함
+   - Parquet : Columnar 데이터 포맷. spark는 Parquet이 기본 포맷
+```
 * HDFS HA Mode
 ```
+   - HA Mode 구성 : NN, SNN, Zookeeper, failover Controller, JN
+
+   - HA Mode에서는 Shared fsimage, edits 가지고 있음. 특정 노드가 가지고 있는게 아님
+     구성 시 location 어디로 할지 정해야 함(저널노드가 관리하는게 좋음)
+   - Namenode 죽으면 failover안오니까 Zookeeper 가 다른 노드에 토큰을 던져줌
+     (failover controller는 NN, SNN에 항상 떠있음)
+   - NN는 Zookeeper에 heartbeat를 계속 보냄. Zookeeper는 항상 떠있음
+   - fs image : 메타정보 저장해 놓은 것
+   - edits : 마지막 저장 후 발생한 일을 edits가 가지고 있음
+   - SNN가 fsimage와 edits 를 합쳐서 가지고있음. 이걸 다시 fsimage로 만들어놓음. new generation edits를 관리함   
 ```
 
 * Kudu
 ```
-```
-* SRF / DRF diff
-```
-```
+   - Cloumnar Store.
+   - sql엔진은 아닌데 spark나 impala와 바로 작업 가능.
 
+   - High throughput / Low latency / CPU performance
+```
+* Yarn Scheduler - SRF / DRF diff
+```
+   - Single Resource Fairness (SRF)
+      . memory resource 를 기반으로 하는 Schedule
+      . fair 하기 때문에 더 없는 쪽으로 할당
+   - Dominant Resource Fairness (DRF)
+      . memory와 cpu 기반으로 하는 schedule
+      . 각 memory와 각 cpu 대비 비율 계산 후 다음 pool 은 비율이 낮은 쪽으로 할당
+```
+```
+    * minimum resource 의 경우
+    min 설정된 쪽에 먼저 할당해주고 나머지에 fair 하게 할당
+    다만, demand가 0인 경우 min만큼도 할당하지 않음.
+
+    * pools with weight
+    각 pool에 높이를 맞춰 줌
+```
