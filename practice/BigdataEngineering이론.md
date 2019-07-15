@@ -298,6 +298,7 @@ do the actual work. 필요 시 다수의 Worker 확장 가능.
 * Spark Context
 ```
    - 모든 spark 프로그램은 spark context object가 필요
+   
 ```
 * RDD
 ```
@@ -371,9 +372,15 @@ do the actual work. 필요 시 다수의 Worker 확장 가능.
    - on Kafka  
       . Direct 면 병렬 / 이미 union 되어 있음
 ```
+
+* Spark Streaming Context
+```
+   - 소스 (DStream, RDD) 생성과 스트리밍 처리 시작, 종료 등을 수행
+```
 * DStream
 ```
-   - 일정하게 자름. 단위 하나하나가 RDD.
+   - 데이터를 끊어서 연속된 RDD로 만들어 처리
+   - 데이터를 아주 짧은 주기로 처리 (ex: 1초마다 처리)
 ```
 
 ## Big data 아키텍처
