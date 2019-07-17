@@ -1,4 +1,4 @@
-## 조원들 사진
+# Team2 
 
 * 조장 : 이인선  
 ![이인선](https://user-images.githubusercontent.com/48976549/61349022-9b478c00-a89d-11e9-8ebf-7afcae0989e1.PNG)
