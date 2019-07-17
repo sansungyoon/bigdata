@@ -86,6 +86,7 @@ hostname
 ```
 
 #### 7. Show the nscd service is running
+네임서비스 캐쉬데몬(Name Service cache Daemon)을 시작하는 스크립트입니다. NSCD데몬은 가장일반적인 네임서비스에 대한 캐쉬기능을 제공하는 데몬으로서 /etc/passwd, /etc/group, /etc/hosts파일등에 대한 캐쉬정보를 가지고 있습니다. NSCD데몬의 설정파일은 /etc/nscd.conf입니다.
 ```
 sudo yum -y install nscd  
 sudo systemctl enable nscd  
